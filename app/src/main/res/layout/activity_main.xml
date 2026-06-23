@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Conteúdo principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#000000">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#0A0A0A"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:text="SKERR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:letterSpacing="0.15"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="16dp"/>
+
+                <TextView
+                    android:id="@+id/tv_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="llama3-70b"
+                    android:textColor="#555555"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Thinking bar -->
+        <LinearLayout
+            android:id="@+id/ll_thinking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#0D1117"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:indeterminateTint="#FFFFFF"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_thinking"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:text="Processando…"/>
+        </LinearLayout>
+
+        <!-- Chat list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="8dp"/>
+
+        <!-- Input area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#0A0A0A"
+            android:padding="8dp">
+
+            <!-- Toolbar de ações -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageButton
+                    android:id="@+id/btn_attach"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/ic_menu_add"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="#888888"
+                    android:contentDescription="Anexar"/>
+
+                <ImageButton
+                    android:id="@+id/btn_mic"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="#888888"
+                    android:contentDescription="Voz"/>
+
+                <ImageButton
+                    android:id="@+id/btn_web_search"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="#888888"
+                    android:alpha="0.4"
+                    android:contentDescription="Busca web"/>
+
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <!-- Campo de texto + enviar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/et_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#555555"
+                    android:hint="Mensagem para Skerr…"
+                    android:padding="12dp"
+                    android:textSize="15sp"
+                    android:maxLines="5"
+                    android:inputType="textMultiLine|textCapSentences"/>
+
+                <ImageButton
+                    android:id="@+id/btn_send"
+                    android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginMtart="8dp"
+                android:src="@android:drawable/ic_menu_send"
+                    android:background="@drawable/bg_send_btn"
+                    android:tint="#000000"
+                    android:contentDescription="Enviar"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Navigation Drawer -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="#0A0A0A">
+
+        <!-- Header do drawer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:background="#111111">
+
+            <TextView
+                android:text="SKERR"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:letterSpacing="0.2"/>
+
+            <Button
+                android:id="@+id/btn_new_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="+ Novo"
+                android:textColor="#000000"
+                android:background="@drawable/bg_send_btn"
+                android:textSize="12sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="Conversas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#555555"
+            android:textSize="11sp"
+            android:letterSpacing="0.1"
+            android:padding="12dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_conversations"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- Settings -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#111111"
+            android:id="@+id/btn_settings">
+
+            <TextView
+                android:text="⚙ Configurações"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#888888"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
